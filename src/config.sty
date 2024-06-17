@@ -1,0 +1,60 @@
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+
+% FORMATTING
+\geometry{
+    letterpaper,
+    left=15mm,
+    right=15mm,
+    top=15mm,
+    bottom=10mm
+}
+
+\hypersetup{
+    hidelinks,
+    pdftitle={Marc Franquesa's Résumé},
+    pdfstartview=Fit,
+}
+
+\pagenumbering{gobble}
+\setlength{\tabcolsep}{0cm}
+\titleformat{\section}{
+    \vspace{-2pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black} \titlerule \vspace{-9pt}]
+
+% COMMANDS
+\newcommand{\linkIcon}{\faGlobe}
+\newcommand{\githubIcon}{\faGithub}
+
+\newcommand{\bulletTitle}[2]{
+    \vspace{-5pt}
+    \item\small{\textbf{#1}{: #2}}
+}
+
+\newcommand{\bulletTitleLink}[4]{
+    \bulletTitle{\href{#1}{#2 #3}}{#4}
+}
+
+\newcommand{\bulletDesc}[1]{
+    \vspace{-6pt}
+    \item\small{{#1}}
+}
+
+\newcommand{\place}[4]{
+    \vspace{5pt}
+    \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & #2 \\
+        \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}
+    \vspace{1pt}
+}
+
+\newcommand{\bulletsPlaceStart}{\begin{itemize}[leftmargin=*, label=$\circ$, rightmargin=0cm]}
+        \newcommand{\bulletsPlaceEnd}{\end{itemize}}
+
+\newcommand{\bulletsMainStart}{\vspace{11pt}\begin{itemize}[leftmargin=*]}
+        \newcommand{\bulletsMainEnd}{\end{itemize}}

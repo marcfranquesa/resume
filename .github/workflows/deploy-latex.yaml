@@ -1,0 +1,39 @@
+name: Deploy LaTeX Project
+
+permissions: write-all
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Latex PDF and HTML
+        run: |
+          sudo apt update
+          sudo apt install texlive-full
+          cd ./src
+          pdflatex main.tex
+          cd ..
+          mkdir ./dist
+          mv src/main.pdf ./dist/resume-marcfranquesa.pdf
+          mv template/index.html ./dist/404.html
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./dist"
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/deploy-pages@v4
